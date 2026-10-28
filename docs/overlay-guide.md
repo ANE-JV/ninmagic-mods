@@ -1,20 +1,22 @@
-# NinMagic Mods 1.1.0: overlay
+# NinMagic Mods 1.2.0: overlay
 
 El paquete instala `switch/.overlays/ninmagic-mods.ovl`. Se necesita un cargador de overlays compatible, como Ultrahand o Tesla. El paquete no cambia el cargador ni su combinación de botones.
 
 1. Abre el juego y el menú de Ultrahand. Elige **NinMagic Mods**.
-2. **X** consulta los índices Git y GameBanana para el juego abierto. Una lista previamente revisada por la aplicación también se puede leer sin Internet. Los resultados muestran su categoría y compatibilidad.
-3. **R** muestra la fuente, los requisitos de versión o Build ID y el motivo de un bloqueo. La versión del paquete de GameBanana describe el mod; no demuestra la versión del juego.
-4. **A** marca un mod compatible; vuelve a pulsarlo para desmarcar. **Y** revisa la selección y **A** la guarda. Hasta 32 opciones quedan pendientes para el Title ID, versión, contenido y Build ID completos de ese juego.
-5. Cierra el juego y abre la aplicación **NinMagic Mods**. Busca sus mods, revisa la selección pendiente y confirma la instalación. La aplicación vuelve a comprobar la identidad, las descargas y los conflictos. Para retirar mods, usa también la aplicación con el juego cerrado.
+2. **X** consulta Git y GameBanana para el proceso abierto. **R** muestra fuente, tipo y requisitos. Los destinos de emulador o desconocidos se conservan para probar y se indican en la revisión; no se presentan como probados en consola.
+3. **A** marca parches compatibles. **Y** vuelve a preparar los archivos pequeños, comprueba los conflictos y muestra la revisión. **A** confirma la escritura del IPS en la microSD. Su nombre contiene el Build ID completo comprobado.
+4. **Cierra y vuelve a abrir el juego**: Atmosphère carga ese IPS durante el siguiente inicio. Guardar un IPS no modifica la memoria del juego que ya está abierto.
+5. Los modelos y paquetes **RomFS** se instalan desde la aplicación en modo aplicación con el juego cerrado. Exigen Title ID y versión declarados coincidentes, además de contenidos instalados comprobados. Para retirar mods usa también la aplicación con el juego cerrado; después reinicia el juego para que desaparezca el efecto de un IPS.
 
-**Arriba/abajo** mueve la selección. **B** vuelve a la lista o esconde el panel para jugar. **ZL** cambia el lado del panel. **L** borra únicamente la selección pendiente; conserva los mods ya instalados. **−** muestra ayuda. **+** sale al menú de overlays cuando la operación haya terminado. Durante una consulta, **X** pide cancelarla; espera a que termine antes de salir.
+**Arriba/abajo** mueve la selección. **B** vuelve o esconde el panel para jugar. **ZL** cambia de lado. **ZR** guarda una selección opcional para revisar en la aplicación; los IPS necesitan que el juego siga abierto cuando la abras desde Álbum. **L** limpia esa cola, conservando los mods instalados. **−** muestra ayuda. **+** sale al menú de overlays cuando termina la operación. Durante una consulta, **X** solicita cancelarla. Una transacción ya confirmada debe terminar antes de salir.
 
-El overlay prepara una selección. No escribe parches ni archivos RomFS en Atmosphère mientras el juego está abierto. No modifica memoria del juego, ejecuta cheats, descarga modelos ni hace búsquedas de RAM. La compatibilidad declarada se comprueba contra los datos publicados y la identidad del juego; no equivale a una prueba de funcionamiento realizada en esa consola.
+El overlay no hace búsquedas de RAM ni escribe memoria del juego. Solo prepara IPS/IPS32 para el siguiente inicio y conserva copias y recibos. Cada escritura revalida el PID, el Build ID completo y los contenidos actuales; si cambian, bloquea la confirmación o conserva un registro de recuperación. Los archivos ajenos modificados no se sobrescriben durante la retirada. Un IPS de NinMagic nunca se renombra para otra versión.
 
-Los paquetes de modelos y RomFS se revisan desde la aplicación. El overlay admite como máximo 128 resultados, parches de 128 KiB y 8 KiB de escrituras estáticas; los paquetes mayores permanecen bloqueados y muestran el motivo. La caché compacta ocupa como máximo 256 KiB. Una selección guardada de otra versión o Build ID se rechaza. El contenido recibido de una fuente no puede autorizar por sí solo una instalación.
+La revisión comprueba identidad y conflictos estáticos; no demuestra que el autor haya probado el efecto en esa consola. Las entradas con datos de compatibilidad ausentes siguen bloqueadas. La versión del paquete GameBanana describe el mod, no la versión del juego. Los ZIP/RAR de GameBanana siguen bloqueados: la aplicación puede mostrar su ficha, pero actualmente no los extrae ni instala. También se bloquean las dependencias no soportadas.
 
-Las consultas en Internet requieren HTTPS. La caché se guarda en `config/NinMagicMods`, separada de las partidas y los mods instalados. No se modifica la reserva global de memoria del cargador. Si no hay suficiente memoria para una consulta, el overlay indica que se use la aplicación.
+Límites del overlay: 128 resultados, 32 opciones, 128 KiB de archivos de parche y 8 KiB de escrituras estáticas combinadas. Los modelos no se descargan desde él. Los respaldos de otros dominios se verifican y conservan por bloques sin cargarlos completos en RAM. Si un parche o respaldo individual excede el límite del overlay, indica que se use la aplicación.
+
+La caché compacta tiene 256 KiB como máximo. Una lista antigua sin huella de contenidos se invalida. Los IDs de una cola no autorizan una instalación: se vuelven a comprobar los archivos, el contexto y el Build ID. Una lista guardada necesita **X** para volver a habilitar parches en el proceso actual. La reserva de memoria del cargador no se modifica; si falta memoria, se conserva la caché y se indica que se use la aplicación.
 
 ## Código y atribuciones
 

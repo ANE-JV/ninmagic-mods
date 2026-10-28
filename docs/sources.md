@@ -7,7 +7,7 @@ NinMagic consulta diez repositorios públicos. La primera copia incluye sus índ
 | [ADEMOLA200/Switch-Emulator-Mod-Database](https://github.com/ADEMOLA200/Switch-Emulator-Mod-Database) | Colección principalmente para emuladores, PCHTXT, IPS y paquetes | Parches estáticos con Title ID y Build ID completo exactos. Los paquetes y RomFS sin identidad verificable permanecen bloqueados. |
 | [SwitchOptimizerMods](https://github.com/medinacristofer034-art/SwitchOptimizerMods) | Paquetes de ajustes por juego | Paquetes ZIP/RAR sin identidad interna comprobada: consulta, sin instalación automática. |
 | [yuzu-mod-archive](https://github.com/yuzu-mirror/yuzu-mod-archive) | Archivo de mods orientados a Yuzu | Los paquetes se muestran para consulta, pero no se instalan por coincidencia de nombre. |
-| [StevensND/switch-port-mods](https://github.com/StevensND/switch-port-mods) | Parches gráficos y de FPS | El autor indica que prueba en emuladores. Solo se admite una conversión estática verificable; no se presenta como probado en Switch. |
+| [StevensND/switch-port-mods](https://github.com/StevensND/switch-port-mods) | Parches gráficos y de FPS | El autor indica que prueba en emuladores. Se conservan para prueba, con comprobaciones por formato e identidad; no se presentan como probados en Switch. |
 | [masagrator/NXGraphicsPatches](https://github.com/masagrator/NXGraphicsPatches) | Parches para hardware Switch | Build ID completo en ExeFS; RomFS requiere una versión explícita y el Title ID correspondiente. |
 | [cucholix/NX-IPS-romfs-compilation](https://github.com/cucholix/NX-IPS-romfs-compilation) | Ajustes gráficos para Switch | El autor especifica requisitos de hardware/frecuencias y pruebas en Mariko. La app no altera frecuencias. Los paquetes RAR y los datos sin identidad verificable se bloquean. |
 | [StevensND/ue4-emuswitch-60fps](https://github.com/StevensND/ue4-emuswitch-60fps) | Parches de FPS y gráficos de Unreal Engine | Mismas comprobaciones de identidad y formato estático. Los archivos comprimidos no se instalan. |
@@ -19,9 +19,13 @@ NinMagic consulta diez repositorios públicos. La primera copia incluye sus índ
 
 ## Compatibilidad
 
-Un juego se reconoce por su Title ID. Los parches ExeFS requieren el Build ID NSO completo leído de su ejecutable efectivo. Un identificador más corto solo puede completarse con ceros finales conforme al formato del autor y debe coincidir con los 32 bytes del ejecutable; nunca se compara únicamente un prefijo. Si la versión declarada también está presente, debe coincidir exactamente.
+Un juego se reconoce por su Title ID. Los parches ExeFS requieren el Build ID NSO completo leído de los módulos del juego en ejecución, con PID verificado. Se preparan archivos para el próximo inicio, sin escribir en la memoria del juego. Un identificador más corto solo puede completarse con ceros finales conforme al formato del autor y debe coincidir con los 32 bytes del ejecutable; nunca se compara únicamente un prefijo. Si la versión declarada también está presente, debe coincidir exactamente.
 
-Un nombre similar permite mostrar un resultado para consultar, pero no autoriza a instalarlo. En PCHTXT, un Title ID explícito dentro del archivo puede acreditar su identidad. Los mods RomFS no contienen un Build ID de ejecutable por sí mismos: se exige una versión explícita, Title ID exacto y una fuente que documente hardware Switch. No se interpreta «Any», «latest» ni una versión ausente como compatibilidad.
+Cuando el autor identifica formalmente la actualización con un Title ID terminado en 800, se relaciona con el ApplicationID del mismo juego terminado en 000 y se indica en el detalle. Esta relación de NCM no omite el Build ID ni la versión. No se interpreta un índice de programa ni un ID de DLC como si fuera el juego base; una familia distinta se rechaza.
+
+Un nombre similar permite mostrar un resultado para consultar, pero no autoriza a instalarlo. En PCHTXT, un Title ID explícito dentro del archivo puede acreditar su identidad. Los mods RomFS no contienen direcciones de ejecutable: requieren el juego cerrado, una versión explícita, Title ID exacto y conservar los requisitos de la fuente, aunque su destino sea emulador o desconocido. La plataforma vuelve a comprobar una identidad de contenido NCM del programa y su actualización; ese registro no sustituye al Build ID de un parche ExeFS. No se interpreta «Any», «latest» ni una versión ausente como compatibilidad.
+
+Si el autor declara expresamente un Build ID también para RomFS, se mantiene esa condición: no se permite instalar mientras esté sin verificar o sea diferente. La ausencia de un requisito de Build ID en recursos no se convierte en permiso para ignorar uno que el autor sí publicó.
 
 Las categorías de FPS, gráficos, ropa y personajes sirven para ordenar los resultados. Tener una categoría no demuestra que un archivo sea compatible. La ropa y los personajes de fuentes externas suelen requerir paquetes, dependencias o instrucciones que no aportan metadatos verificables; estos resultados permanecen bloqueados. No se inventan modelos, versiones o códigos.
 
@@ -47,3 +51,13 @@ Las consultas y la paginación tienen límites y caché privada de seis horas. G
 La versión publicada de un mod, como 1.0, no es la versión del juego. Actualmente los paquetes de GameBanana se muestran para consulta y permanecen bloqueados cuando no existe una compatibilidad de juego verificable; no se extraen automáticamente por tener una carpeta romfs. No se redistribuyen sus modelos ni paquetes en el ZIP de NinMagic.
 
 Caso comprobado: [Vegeta para Wonder](https://gamebanana.com/mods/556710), de diegoforfun, sustituye a Luigi. El paquete oficial contiene ocho archivos RomFS y no declara versión de juego ni Build ID, por lo que no se habilita para Wonder 1.2.1 como si estuviera probado.
+
+## Destino declarado desde 1.2.0
+
+Se conservan todas las entradas, incluidas las expresamente destinadas a emulador, para una prueba informada a petición del usuario. La etiqueta «Emulador» o «Destino declarado: emulador» es un aviso de procedencia; no elimina la entrada ni certifica que funcione en Switch. «Probado en emuladores» y la plataforma desconocida tampoco justifican retirar un repositorio. No se desinstalan automáticamente mods existentes en la SD.
+
+La documentación de [StevensND](https://github.com/StevensND/switch-port-mods/blob/main/README.md) especifica pruebas en emuladores y desconocimiento del rendimiento en hardware. [UE4](https://github.com/StevensND/ue4-emuswitch-60fps/blob/main/README.md), [Yuzu mod archive](https://github.com/yuzu-mirror/yuzu-mod-archive/blob/main/README.md), Kenji y theboy se conservan con sus limitaciones. Masagrator y Cucholix sí documentan hardware Switch. Ninguna procedencia demuestra compatibilidad universal ni ausencia de cierres.
+
+La instantánea sigue incluyendo las diez fuentes y las 3.420 opciones iniciales, también las dos copias de «Luigi's Mansion 2 HD / 1998p (yuzu only)». No se filtra el índice por destino. El Build ID, PID y versión de un parche estático deben coincidir; para RomFS se exige Title ID exacto, versión del juego explícita, juego cerrado e identidad NCM de contenido nuevamente comprobada. El origen para emulador o desconocido se advierte, sin sustituir esas comprobaciones. Los formatos no admitidos y las dependencias externas siguen bloqueados.
+
+GameBanana mantiene su función de consulta y sus bloqueos de formato y compatibilidad. Los nombres y descripciones disponibles pueden aportar la etiqueta de destino, pero una versión del mod no se usa como versión del juego.
