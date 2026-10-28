@@ -1,5 +1,5 @@
 NINMAGIC-MODS-UPDATE-1
-version=1.2.0
-url=https://raw.githubusercontent.com/ANE-JV/ninmagic-mods/main/versions/v1.2.0/NinMagic-Mods.nro
-sha256=be2a06458dcbd79e609e59a1ca2b045ec76d4603d6aa9519c2b793fc1a3f1db6
-size=3822848
+version=1.2.1
+url=https://raw.githubusercontent.com/ANE-JV/ninmagic-mods/main/versions/v1.2.1/NinMagic-Mods.nro
+sha256=a620a7dc30d49ed1db041446baf790bbf0f8caec0b19a074c85fad80e3de824b
+size=3740928
