@@ -36,3 +36,14 @@ La coincidencia de identidad y el formato correcto reducen riesgos, pero no cert
 Los autores y recopiladores conservan sus derechos. Los índices incluidos contienen rutas y metadatos públicos de GitHub, no los archivos de los mods. Las descargas verificadas van directamente al caché privado de la consola desde los repositorios originales. La aplicación conserva enlaces a cada fuente. El proyecto de h2y declara CC BY-SA 4.0 y se enlaza su página; el paquete 7z no se redistribuye.
 
 Fuentes de formato: [IPSwitch](https://github.com/3096/ipswitch), [Atmosphère](https://github.com/Atmosphere-NX/Atmosphere). La conversión conserva los bytes habilitados por el autor y rechaza instrucciones desconocidas o contradictorias.
+
+
+## GameBanana desde 1.1.0
+
+Además de los diez repositorios, se consulta GameBanana por el juego seleccionado. Se utiliza su API pública v11 y se muestra la procedencia original. Las identidades GameBanana verificadas por Title ID se combinan con una búsqueda dinámica que exige nombre exacto normalizado y plataforma Switch; un resultado parecido o ambiguo no se convierte en el juego instalado. Un fallo o identificación insuficiente se distingue de una búsqueda sin resultados.
+
+Las consultas y la paginación tienen límites y caché privada de seis horas. GameBanana permite encontrar personajes y ropa que no figuran en las recopilaciones GitHub. Se consultó como referencia la documentación y el código de [SimpleModDownloader](https://github.com/PoloNX/SimpleModDownloader), que obtiene sus mods de GameBanana. Los otros gestores aportados por el usuario gestionan bibliotecas locales, no nuevas fuentes online.
+
+La versión publicada de un mod, como 1.0, no es la versión del juego. Actualmente los paquetes de GameBanana se muestran para consulta y permanecen bloqueados cuando no existe una compatibilidad de juego verificable; no se extraen automáticamente por tener una carpeta romfs. No se redistribuyen sus modelos ni paquetes en el ZIP de NinMagic.
+
+Caso comprobado: [Vegeta para Wonder](https://gamebanana.com/mods/556710), de diegoforfun, sustituye a Luigi. El paquete oficial contiene ocho archivos RomFS y no declara versión de juego ni Build ID, por lo que no se habilita para Wonder 1.2.1 como si estuviera probado.

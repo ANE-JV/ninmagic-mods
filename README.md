@@ -1,4 +1,4 @@
-# NinMagic Mods 1.0.0
+# NinMagic Mods 1.1.0
 
 Aplicación NRO para Nintendo Switch con Atmosphère. Catálogo de mods publicados, comprobación de identidad y versión, selección e instalación con copias anteriores y retirada reversible. Interfaz en español con colores neón y el logo de NinMagic adaptado con la marca MODS en magenta y violeta.
 
@@ -9,6 +9,18 @@ El ZIP completo se puede alojar en la carpeta Herramientas de tu servidor para d
 El ejecutable debe quedar en `switch/NinMagicMods/NinMagic-Mods.nro`. Los índices y la configuración quedan en `config/NinMagicMods/`. Las fuentes correspondientes están dentro de `fuentes/` y no son necesarias para ejecutar la aplicación.
 
 Abre hbmenu en modo aplicación manteniendo R al iniciar otro juego o usando un acceso de homebrew compatible. El título que sirve para abrir hbmenu no se puede considerar cerrado para modificarlo; usa otro título. El modo Álbum/applet permite consultar, pero bloquea la instalación y retirada de mods.
+
+## Overlay y GameBanana en 1.1.0
+
+El ZIP incluye `switch/.overlays/ninmagic-mods.ovl`. Requiere un cargador compatible ya instalado, como Ultrahand o Tesla. No cambia su combinación de botones ni instala el cargador. El NRO incluye la misma copia verificada del overlay: al abrirse la copia a su ruta propia y conserva versiones anteriores en `config/NinMagicMods/overlay-update/`. Así una actualización del NRO también puede renovar el overlay al volver a abrir la aplicación.
+
+El overlay detecta el juego abierto, permite consultar fuentes y guardar una selección. No instala ni retira mods mientras el juego está abierto. Después cierra el juego, abre NinMagic Mods en modo aplicación mediante otro título, elige el juego y revisa con Y; A confirma. La selección se comprueba de nuevo contra Title ID, versión de contenido, versión del juego y Build ID completo; no autoriza ninguna escritura por sí misma. Los resultados grandes o complejos requieren revisión en la aplicación.
+
+GameBanana se consulta por el juego elegido y conserva los enlaces, categorías y autores. No confunde la versión del mod con la versión del juego. Sus resultados de archivos comprimidos permanecen bloqueados si no contienen una compatibilidad de juego verificable. El Vegeta de Wonder está identificado, pero el paquete no declara una versión del juego ni Build ID; no se presenta como compatible.
+
+ZR en la lista de la aplicación explica en español los ajustes conocidos y conserva el nombre original. Las explicaciones de nombres desconocidos no se inventan.
+
+La lectura de Build ID añade una vía alternativa de sólo lectura del mismo contenido instalado cuando `fsp-ldr` no está disponible. No prueba una versión anterior del juego. Si tampoco se puede leer por esa vía, continúa bloqueada la instalación con un diagnóstico más preciso. La corrección requiere todavía comprobación en hardware.
 
 ## Elegir e instalar
 
@@ -31,7 +43,7 @@ El instalador rechaza archivos incompatibles, rutas fuera de sus destinos, confl
 
 La coincidencia de identidad y el formato correcto reducen el riesgo, pero no certifican el efecto del mod ni evitan todos los cierres. Algunos autores exigen requisitos concretos de hardware o frecuencias; la aplicación no cambia las frecuencias. Conserva las condiciones del autor.
 
-## Qué puede instalar esta primera versión
+## Qué puede instalar esta versión
 
 Se admiten parches estáticos comprobados y grupos RomFS publicados con identidad y versión inequívocas. Los ZIP/RAR/7z y los paquetes dependientes de otras herramientas se muestran para consulta cuando se identifica el juego, pero no se extraen como si su nombre demostrara compatibilidad.
 
@@ -45,7 +57,7 @@ Selecciona el juego y pulsa L. Con el juego cerrado se revisan los mods registra
 
 Las operaciones conservan recibos y copias por juego dentro de `config/NinMagicMods/backups/`. Si un archivo fue cambiado después por otra aplicación, no se sobrescribe silenciosamente: la operación se bloquea para conservar los datos y sus copias. Una operación interrumpida deja un registro que se comprueba para recuperar únicamente sus archivos propios.
 
-Si una selección reemplazó otra selección anterior, la retirada recupera el estado anterior registrado. Los cambios que el propio juego haya guardado dentro de una partida no se revierten al restaurar archivos del mod. La aplicación no borra ni edita partidas.
+Si cambias una selección por otra, la retirada recupera los archivos originales conservados antes de los mods propios de NinMagic; no vuelve a activar la selección anterior. Los cambios que el propio juego haya guardado dentro de una partida no se revierten al restaurar archivos del mod. La aplicación no borra ni edita partidas.
 
 ## Catálogo y fuentes
 
@@ -70,7 +82,9 @@ El archivo opcional `config/NinMagicMods/update-url.txt` permite elegir otro man
 Con devkitPro, devkitA64, libnx, zlib, libcurl y switch-tools en Windows:
 
 ```powershell
-.\tools\build.ps1 -ExpectedVersion 1.0.0 -Preview
+.\tools\build-overlay.ps1 -ExpectedVersion 1.1.0
+python tools/bundle_overlay.py
+.\tools\build.ps1 -ExpectedVersion 1.1.0 -Preview
 ```
 
 La compilación usa una carpeta temporal dedicada bajo el perfil del usuario y no escribe en la consola. Las pruebas utilizan servicios simulados, archivos públicos de referencia o carpetas temporales del PC. Se comprueban metadatos, identidad de juego, compatibilidad de fuentes, conversión de parches, conflictos, copias, recuperación, actualizador y pantallas. Compilar y superar esas pruebas no sustituye una prueba en una consola real.
