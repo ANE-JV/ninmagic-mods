@@ -8,9 +8,13 @@ Desde 1.2.1 NinMagic consulta tres repositorios que documentan Nintendo Switch f
 | [cucholix/NX-IPS-romfs-compilation](https://github.com/cucholix/NX-IPS-romfs-compilation) | Switch con Atmosphère; requisitos de Mariko y frecuencias indicados por el autor | Se conservan estos requisitos. La aplicación no altera frecuencias ni instala configuraciones de overclock. |
 | [h2y/BOTW-Chinese-Linkle](https://github.com/h2y/BOTW-Chinese-Linkle) | Instrucciones de Switch física para diálogos complementarios de Linkle | Actualmente no aporta formato admitido y no genera resultados instalables. Su índice no acredita un modelo ni versión de juego para instalar. |
 
-La política exige una fuente física de la lista admitida, su rama conocida, procedencia explícita y ausencia de etiquetas exclusivas de emulador. Las recopilaciones para emuladores y de destino sin confirmar dejan de consultarse. GameBanana queda fuera porque las fichas disponibles no acreditan aquí el destino físico requerido. La misma política se comprueba al cargar cachés y selecciones anteriores, al listar y al preparar archivos.
+La política exige una fuente física de la lista admitida, su rama conocida, procedencia explícita y ausencia de etiquetas exclusivas de emulador. Las recopilaciones para emuladores no se consultan. La misma política se comprueba al cargar cachés y selecciones anteriores y al preparar archivos.
+
+Desde 1.3.0 también se consulta [GameBanana](https://gamebanana.com/) por juego. Se conservan el identificador del juego y del mod, el autor, el enlace original y los archivos publicados. Un resultado ZIP/RAR pendiente puede revisarse desde la aplicación: solo podrá prepararse cuando su descripción o estructura documente Switch física y aporte identidad y compatibilidad suficientes. La versión de publicación del mod no se toma como versión del juego. Las descargas van directamente a la consola, sin un espejo de NinMagic ni redistribución de los archivos de terceros.
 
 ## Compatibilidad
+
+La consulta de GameBanana está acotada: hasta 90 publicaciones por juego desde el NRO y 45 desde el overlay, además de referencias destacadas verificadas. No representa todo el catálogo histórico. Las fichas con varios archivos ofrecen sus variantes ZIP/RAR activas para elegir; no se descarga una variante arbitraria. Se mantienen límites de respuesta, caché de seis horas y hasta 128 MiB por paquete.
 
 Un juego se reconoce por su Title ID. Los parches ExeFS requieren el Build ID NSO completo leído de los módulos del juego en ejecución, con PID verificado. Se preparan archivos para el próximo inicio, sin escribir en la memoria del juego. Un identificador más corto solo puede completarse con ceros finales conforme al formato del autor y debe coincidir con los 32 bytes del ejecutable; nunca se compara únicamente un prefijo. Si la versión declarada también está presente, debe coincidir exactamente.
 
@@ -22,7 +26,7 @@ Si el autor declara expresamente un Build ID también para RomFS, se mantiene es
 
 Las categorías de FPS, gráficos, ropa y personajes sirven para ordenar los resultados. Tener una categoría no demuestra que un archivo sea compatible. La ropa y los personajes de fuentes externas suelen requerir paquetes, dependencias o instrucciones que no aportan metadatos verificables; estos resultados permanecen bloqueados. No se inventan modelos, versiones o códigos.
 
-La nueva copia inicial contiene únicamente los índices de las tres fuentes físicas admitidas: 284 candidatos de formato admitido: 182 PCHTXT, 63 IPS y 39 grupos RomFS. Las 316 entradas comprimidas y la ficha informativa sin formato admitido de esas fuentes se excluyen de los resultados. El número de entradas incluye versiones diferentes, duplicados y formatos bloqueados; no representa ese número de mods instalables para cada juego. Se mantienen las categorías FPS, gráficos, ropa y personajes cuando hay archivos y metadatos que las acrediten.
+La copia inicial contiene los índices de las tres fuentes físicas admitidas. Desde 1.3.0 sus ZIP/RAR también pueden mostrarse para inspección. Los formatos no admitidos, incluidos 7z, no se convierten en resultados instalables. El número de entradas incluye versiones diferentes, duplicados y paquetes pendientes; no representa ese número de mods compatibles para cada juego. Se mantienen las categorías FPS, gráficos, ropa y personajes cuando hay datos que las acreditan.
 
 En los índices revisados, tres grupos RomFS de la fuente física de masagrator aportan Title ID y versión explícita mediante rutas inequívocas: Garfield Kart Furious Racing 1.0.1, Overcooked 2 1.0.9 y Thronebreaker 1.0.1. Los otros grupos no se habilitan usando una versión supuesta. Una actualización del catálogo puede cambiar ese inventario, conservando las mismas comprobaciones.
 
@@ -34,8 +38,7 @@ Los autores y recopiladores conservan sus derechos. Los índices incluidos conti
 
 Fuentes de formato: [IPSwitch](https://github.com/3096/ipswitch), [Atmosphère](https://github.com/Atmosphere-NX/Atmosphere). La conversión conserva los bytes habilitados por el autor y rechaza instrucciones desconocidas o contradictorias.
 
-
-## Alcance de la política 1.2.1
+## Alcance de la política 1.3.0
 
 Excluir una entrada del catálogo no desinstala archivos ya presentes en la microSD. Se conservan los recibos y las copias anteriores para que el usuario pueda retirar sus mods con el juego cerrado. No se borran partidas ni contenidos ajenos.
 

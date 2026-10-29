@@ -1,4 +1,4 @@
-# NinMagic Mods 1.2.1
+# NinMagic Mods 1.3.0
 
 Aplicación para Nintendo Switch con Atmosphère y overlay de Ultrahand/Tesla. Consulta mods publicados, explica sus efectos y prepara los archivos comprobados con copias anteriores y retirada reversible. Logo MODS y colores neón de NinMagic.
 
@@ -14,13 +14,22 @@ Canal independiente de Cheats, Cleaner y la web: `https://raw.githubusercontent.
 
 ## Buscar y entender los resultados
 
-A elige un juego. X en la biblioteca actualiza las fuentes Git; Y vuelve a leer la lista de juegos; L muestra las fuentes. Desde 1.2.1 se consultan solo fuentes que documentan Nintendo Switch física. La copia inicial muestra 284 opciones de formato admitido, obtenidas de tres fuentes, con distintas versiones y duplicados; cada resultado debe superar además las comprobaciones aplicables a tu juego. Los archivos comprimidos y los formatos que la aplicación no instala se excluyen de la lista.
+A elige un juego y consulta sus mods de Git y GameBanana. X en la biblioteca actualiza las fuentes Git; Y vuelve a leer los juegos; L muestra las fuentes. El paquete incluye índices iniciales de tres repositorios documentados para Switch física. GameBanana se consulta por juego y conserva su caché, sin descargar todos los paquetes al buscar.
 
-El catálogo excluye los mods de emulador, los de destino sin confirmar y los que solo documentan pruebas en emulación. La política también se aplica a las cachés y selecciones antiguas, y se vuelve a comprobar antes de preparar archivos. Tener procedencia para Switch física no convierte un Build ID o una versión distintos en compatibles.
+El catálogo excluye los mods exclusivos de emulador y los que solo documentan pruebas en emulación. Un ZIP/RAR de GameBanana puede aparecer pendiente de revisión: eso no acredita todavía su destino ni permite instalarlo. Su descripción o contenido deben aportar pruebas de destino Switch y después deben coincidir los datos de compatibilidad del juego.
 
 ZR abre el detalle de un mod. Explica en español los efectos conocidos y conserva el nombre original. X dentro del detalle muestra el texto del autor. No se inventan explicaciones para nombres desconocidos. X en la lista alterna entre todos los resultados y los compatibles.
 
-GameBanana deja de consultarse en esta versión: sus fichas no acreditan aquí el destino físico y la compatibilidad necesarios. No se incluyen entradas de emulador ni fichas de destino desconocido para aumentar artificialmente los resultados. La versión del mod nunca sustituye a la versión del juego.
+GameBanana y los repositorios descargan directamente a la consola desde sus servidores originales. No hace falta un servidor de mods propio. Se conservan autor, enlace y descripción. La versión del mod nunca sustituye a la versión del juego; si falta una versión necesaria o no coincide el Build ID, se explica el bloqueo.
+
+## Revisar ZIP y RAR
+
+1. Selecciona un resultado que diga **REVISAR ARCHIVO** y pulsa **A**.
+2. NinMagic descarga el paquete a su caché y comprueba identidad, rutas, formato, destino y compatibilidad. Esta revisión no instala nada.
+3. Si coincide, pulsa **A** para marcarlo. **Y** prepara la selección, comprueba los archivos otra vez y muestra la confirmación.
+4. Confirma la selección que deseas. Los parches de código se preparan con el juego abierto para su próximo inicio; los recursos RomFS requieren el juego cerrado y modo aplicación.
+
+La revisión admite ZIP y RAR de las fuentes compatibles: hasta 128 MiB comprimidos o expandidos, 32 MiB por archivo y por diccionario RAR. No copia a ciegas un comprimido a la SD. Rechaza rutas inseguras, paquetes cifrados o divididos, formatos/dependencias no admitidos y mezclas que no se puedan aplicar como una única operación. No elige arbitrariamente entre alternativas del mismo paquete.
 
 ## Preparar parches de FPS o gráficos con el juego abierto
 
@@ -48,7 +57,7 @@ Los recursos no contienen direcciones de código. Se exige Title ID correcto, ve
 
 El modo Álbum no instala archivos RomFS. No se mezclan parches de código y RomFS en una misma operación: requieren estados distintos del juego. Una selección nueva conserva los archivos propios del otro tipo de mod y sus respaldos; preparar un IPS no retira modelos RomFS mientras juegas.
 
-Los paquetes ZIP/RAR/7z y los que requieren BCML, UKMM, datos del juego, plugins, merges u otras herramientas no se convierten en una copia RomFS compatible por tener un nombre parecido. Tampoco se interpretan Any, latest o la ausencia de versión como una versión del juego verificada.
+Los paquetes 7z y los que requieren BCML, UKMM, datos del juego, plugins, merges u otras herramientas no se convierten automáticamente. Tampoco se interpretan Any, latest o la ausencia de versión como una versión del juego verificada.
 
 ## Overlay
 
@@ -56,7 +65,7 @@ El overlay detecta el juego abierto y consulta las fuentes sin buscar valores en
 
 La versión 1.2.1 corrige la comprobación de memoria del overlay: la ausencia del descriptor de heap HBABI no significa que el cargador no haya proporcionado un heap válido. El presupuesto se calcula con el rango real del allocator y sus contadores, conservando un margen de memoria. Si una consulta no cabe, informa de las cifras en KiB. No cambia la configuración ni la reserva del cargador.
 
-Esta versión no incorpora un importador RAR/ZIP/7z. Los paquetes comprimidos y las fichas de formato no admitido quedan fuera de la lista, aunque su fuente documente hardware físico. Para comprobar los parches PCHTXT/IPS admitidos, deja el juego abierto y pulsa X en el overlay.
+X consulta Git y GameBanana para el juego abierto. Los ZIP/RAR muestran **ABRIR EN APLICACIÓN**: el overlay no los descomprime ni instala recursos mientras juegas. Para comprobar los parches PCHTXT/IPS pequeños admitidos, deja el juego abierto y pulsa X.
 
 Los controles y límites exactos están en `Overlay.txt` y `docs/overlay-guide.md`. Esconderlo permite seguir jugando; salir a otro overlay descarga su proceso. No hay activación instantánea en memoria: reinicia el juego después de preparar sus parches.
 
@@ -70,7 +79,7 @@ Si cambias una selección por otra, retirar recupera los archivos originales con
 
 ## Comprobaciones y límites
 
-La coincidencia de identidad y el formato admitido no certifican el efecto del mod ni evitan todos los cierres. Los mods de emulador y de destino desconocido se excluyen del catálogo. La declaración del autor para Switch física no equivale a una prueba de NinMagic en esa consola. La aplicación no modifica frecuencias, cheats, sysmodules ni archivos de arranque.
+La coincidencia de identidad y el formato admitido no certifican el efecto del mod ni evitan todos los cierres. No se permite instalar paquetes de destino desconocido o exclusivos de emulador. La declaración del autor para Switch física no equivale a una prueba de NinMagic en esa consola. La aplicación no modifica frecuencias, cheats, sysmodules ni archivos de arranque.
 
 Esta versión corrige el método que bloqueaba todos los parches al intentar leer ejecutables cerrados mediante fsp-ldr, un servicio con una sesión reservada al cargador. También retira el uso inválido del tipo Code en la API general de FS. Las pruebas del PC y de wrappers no sustituyen la comprobación en una consola real.
 
@@ -80,10 +89,12 @@ La caché permite consultar datos sin Internet y preparar archivos ya descargado
 
 Con devkitPro, devkitA64, libnx y las dependencias indicadas en los Makefiles:
 
+Primero ejecuta `bash tools/build-libarchive-switch.sh` desde la terminal devkitPro MSYS2. Compila libarchive 3.8.10 desde una descarga con SHA-256 fijado, solo con zlib como dependencia opcional. El NRO usa ese lector local; el overlay no enlaza libarchive. Se incluyen su licencia y el script de compilación.
+
 ```powershell
-.\tools\build-overlay.ps1 -ExpectedVersion 1.2.1
+.\tools\build-overlay.ps1 -ExpectedVersion 1.3.0
 python tools/bundle_overlay.py
-.\tools\build.ps1 -ExpectedVersion 1.2.1 -Preview
+.\tools\build.ps1 -ExpectedVersion 1.3.0 -Preview
 python tools/package.py
 ```
 

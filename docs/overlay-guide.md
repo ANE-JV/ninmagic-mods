@@ -1,20 +1,20 @@
-# NinMagic Mods 1.2.1: overlay
+# NinMagic Mods 1.3.0: overlay
 
 El paquete instala `switch/.overlays/ninmagic-mods.ovl`. Se necesita un cargador de overlays compatible, como Ultrahand o Tesla. El paquete no cambia el cargador ni su combinación de botones.
 
 En la 1.2.1, el control de memoria usa el heap real del allocator aunque el cargador no declare un descriptor HBABI. Conserva los límites y el margen de memoria; cuando no cabe una operación, muestra la capacidad, el uso y el presupuesto requerido en KiB. La versión del overlay aparece en el encabezado para comprobar que se renovó después de actualizar el NRO.
 
 1. Abre el juego y el menú de Ultrahand. Elige **NinMagic Mods**.
-2. **X** consulta fuentes documentadas para Switch física para el proceso abierto. **R** muestra fuente, tipo y requisitos. Las entradas de emulador o de destino desconocido se excluyen también de las listas guardadas.
-3. **A** marca parches compatibles. **Y** vuelve a preparar los archivos pequeños, comprueba los conflictos y muestra la revisión. **A** confirma la escritura del IPS en la microSD. Su nombre contiene el Build ID completo comprobado.
-4. **Cierra y vuelve a abrir el juego**: Atmosphère carga ese IPS durante el siguiente inicio. Guardar un IPS no modifica la memoria del juego que ya está abierto.
-5. Los modelos y paquetes **RomFS** se instalan desde la aplicación en modo aplicación con el juego cerrado. Exigen Title ID y versión declarados coincidentes, además de contenidos instalados comprobados. Para retirar mods usa también la aplicación con el juego cerrado; después reinicia el juego para que desaparezca el efecto de un IPS.
+2. **X** consulta Git y GameBanana para el proceso abierto. **R** muestra fuente, tipo y requisitos. Un ZIP/RAR pendiente indica **ABRIR EN APLICACIÓN** para revisar su contenido.
+3. **A** marca parches compatibles. **Y** vuelve a preparar los archivos pequeños, comprueba los conflictos y muestra la revisión. **A** confirma la escritura del IPS en la microSD.
+4. **Cierra y vuelve a abrir el juego**: Atmosphère carga ese IPS durante el siguiente inicio. Guardarlo no modifica la memoria del juego abierto.
+5. Los recursos **RomFS** se instalan desde el NRO en modo aplicación con el juego cerrado. Para retirar mods usa también la aplicación con el juego cerrado.
 
 **Arriba/abajo** mueve la selección. **B** vuelve o esconde el panel para jugar. **ZL** cambia de lado. **ZR** guarda una selección opcional para revisar en la aplicación; los IPS necesitan que el juego siga abierto cuando la abras desde Álbum. **L** limpia esa cola, conservando los mods instalados. **−** muestra ayuda. **+** sale al menú de overlays cuando termina la operación. Durante una consulta, **X** solicita cancelarla. Una transacción ya confirmada debe terminar antes de salir.
 
 El overlay no hace búsquedas de RAM ni escribe memoria del juego. Solo prepara IPS/IPS32 para el siguiente inicio y conserva copias y recibos. Cada escritura revalida el PID, el Build ID completo y los contenidos actuales; si cambian, bloquea la confirmación o conserva un registro de recuperación. Los archivos ajenos modificados no se sobrescriben durante la retirada. Un IPS de NinMagic nunca se renombra para otra versión.
 
-La revisión comprueba identidad y conflictos estáticos; no demuestra que el autor haya probado el efecto en esa consola. Las entradas con datos de compatibilidad ausentes siguen bloqueadas. GameBanana no se consulta bajo la política de fuentes físicas de esta versión. Los paquetes ZIP/RAR/7z y fichas sin formato admitido se excluyen de los resultados, también si proceden de una fuente física. También se bloquean las dependencias no soportadas.
+La revisión comprueba identidad y conflictos estáticos; no demuestra que el autor haya probado el efecto en esa consola. Las entradas con datos de compatibilidad ausentes siguen bloqueadas. ZIP/RAR se consultan como metadatos y se revisan desde el NRO; nunca se descomprimen en el overlay. No se admiten 7z ni dependencias no soportadas.
 
 Límites del overlay: 128 resultados, 32 opciones, 128 KiB de archivos de parche y 8 KiB de escrituras estáticas combinadas. Los modelos no se descargan desde él. Los respaldos de otros dominios se verifican y conservan por bloques sin cargarlos completos en RAM. Si un parche o respaldo individual excede el límite del overlay, indica que se use la aplicación.
 
