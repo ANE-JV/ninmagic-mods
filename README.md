@@ -1,8 +1,16 @@
-# NinMagic Mods 1.4.1
+# NinMagic Mods 1.4.2
 
 Aplicación homebrew para Nintendo Switch con Atmosphère. Busca mods publicados de gráficos, FPS, ropa y personajes en GitHub y GameBanana; permite elegirlos, instalarlos y retirar los archivos instalados por NinMagic.
 
-## Qué cambia en 1.4.1
+## Qué cambia en 1.4.2
+
+Se corrige la lectura de los identificadores de archivos que GameBanana devuelve como texto decimal. Antes, una publicación con un ZIP/RAR admitido podía desaparecer de la lista por ese detalle de la respuesta. También se amplía la identificación de juegos de Switch para consultar su catálogo aunque GameBanana no añada «(Switch)» al nombre. Esto mejora el descubrimiento; no certifica la compatibilidad de cada mod.
+
+Después de actualizar, vuelve a seleccionar el juego en la aplicación. En el overlay pulsa **X** para renovar su lista. Se conservan las casillas instaladas, las elecciones pendientes y las copias para retirar los mods.
+
+El filtro de formatos seleccionables también conserva las publicaciones que permiten elegir entre varios ZIP/RAR. La cifra de la cabecera corresponde a los índices Git; GameBanana se consulta al elegir cada juego y sus resultados no estaban incluidos en esa cifra.
+
+## Casillas e identificación de archivos
 
 Los mods instalados conservan su casilla marcada al volver a abrir la aplicación y muestran **INSTALADO**. Las elecciones todavía no aplicadas muestran **POR INSTALAR**. La aplicación guarda por separado la elección pendiente y el registro de lo realmente instalado. Marcar una casilla no instala un mod: se prepara con **Y** y se confirma con **A**. Para retirar los mods instalados, usa **L** con el juego cerrado.
 
@@ -79,9 +87,9 @@ ZIP/RAR: hasta 128 MiB comprimidos o expandidos, 32 MiB por archivo y por diccio
 Se necesitan devkitPro, devkitA64, libnx y las dependencias de los Makefiles. Ejecuta primero `bash tools/build-libarchive-switch.sh` desde devkitPro MSYS2 para compilar libarchive 3.8.10 con SHA-256 de origen fijado y zlib. El overlay no enlaza libarchive.
 
 ```powershell
-.\tools\build-overlay.ps1 -ExpectedVersion 1.4.1
+.\tools\build-overlay.ps1 -ExpectedVersion 1.4.2
 python tools/bundle_overlay.py
-.\tools\build.ps1 -ExpectedVersion 1.4.1 -Preview
+.\tools\build.ps1 -ExpectedVersion 1.4.2 -Preview
 python tools/package.py
 ```
 

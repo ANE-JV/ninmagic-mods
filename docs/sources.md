@@ -1,4 +1,4 @@
-# Fuentes de NinMagic Mods 1.4.1
+# Fuentes de NinMagic Mods 1.4.2
 
 La aplicación consulta los índices de estos repositorios y descarga archivos desde sus revisiones originales, comprobando tamaño y hash Git:
 
@@ -9,6 +9,10 @@ La aplicación consulta los índices de estos repositorios y descarga archivos d
 | [h2y/BOTW-Chinese-Linkle](https://github.com/h2y/BOTW-Chinese-Linkle) | Recursos e instrucciones complementarias de Linkle. Los 7z u otros formatos no admitidos no se convierten automáticamente. |
 
 [GameBanana](https://gamebanana.com/) se consulta por juego: se conservan autor, enlace, identificador del juego/mod/archivo y descripción. Hasta 90 publicaciones por juego en el NRO y 45 en el overlay, además de referencias destacadas. No es una copia completa de su catálogo histórico. La caché reciente se reutiliza durante seis horas.
+
+La identificación directa se amplía en 1.4.2 a quince aplicaciones: Mario Wonder, Metroid Dread, Tears of the Kingdom, Mario Odyssey, Mario Kart 8 Deluxe, Smash Ultimate, Kirby and the Forgotten Land, Luigi's Mansion 3, Breath of the Wild para Switch, Pokémon Legends: Arceus, Scarlet, Violet, Sword, Shield y Animal Crossing: New Horizons. Otros juegos siguen utilizando la búsqueda exacta de su categoría Switch. Las categorías compartidas por dos ediciones de Pokémon no autorizan instalar un paquete que declare el Title ID de la otra edición.
+
+Los identificadores de archivos numéricos y los devueltos como texto decimal por la API se leen correctamente. No se amplían con ello los tamaños o formatos admitidos ni se incluyen herramientas de PC.
 
 ## Selección e instalación
 

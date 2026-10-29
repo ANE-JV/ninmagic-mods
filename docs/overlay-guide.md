@@ -1,4 +1,4 @@
-# NinMagic Mods 1.4.1: overlay
+# NinMagic Mods 1.4.2: overlay
 
 El paquete instala `switch/.overlays/ninmagic-mods.ovl`. Se necesita un cargador de overlays compatible, como Ultrahand o Tesla. El paquete no cambia el cargador ni su combinación de botones.
 
