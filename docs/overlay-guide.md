@@ -1,24 +1,26 @@
-# NinMagic Mods 1.3.0: overlay
+# NinMagic Mods 1.4.0: overlay
 
 El paquete instala `switch/.overlays/ninmagic-mods.ovl`. Se necesita un cargador de overlays compatible, como Ultrahand o Tesla. El paquete no cambia el cargador ni su combinación de botones.
 
-En la 1.2.1, el control de memoria usa el heap real del allocator aunque el cargador no declare un descriptor HBABI. Conserva los límites y el margen de memoria; cuando no cabe una operación, muestra la capacidad, el uso y el presupuesto requerido en KiB. La versión del overlay aparece en el encabezado para comprobar que se renovó después de actualizar el NRO.
-
 1. Abre el juego y el menú de Ultrahand. Elige **NinMagic Mods**.
-2. **X** consulta Git y GameBanana para el proceso abierto. **R** muestra fuente, tipo y requisitos. Un ZIP/RAR pendiente indica **ABRIR EN APLICACIÓN** para revisar su contenido.
-3. **A** marca parches compatibles. **Y** vuelve a preparar los archivos pequeños, comprueba los conflictos y muestra la revisión. **A** confirma la escritura del IPS en la microSD.
-4. **Cierra y vuelve a abrir el juego**: Atmosphère carga ese IPS durante el siguiente inicio. Guardarlo no modifica la memoria del juego abierto.
-5. Los recursos **RomFS** se instalan desde el NRO en modo aplicación con el juego cerrado. Para retirar mods usa también la aplicación con el juego cerrado.
+2. **X** consulta Git y GameBanana. **R** muestra el tipo, la fuente y los requisitos publicados por el autor.
+3. **A** elige un parche estático. La lista muestra **ELEGIDO · SIN VERIFICAR**: elegirlo no comprueba su compatibilidad, ni lo instala todavía. Una versión o Build ID diferente o ausente no impide la elección.
+4. **Y** obtiene los archivos y prepara la confirmación. Se conservan las comprobaciones de integridad, formato, rutas, tamaño y conflictos de archivos. **A** confirma escribir los IPS en la microSD.
+5. **Cierra y vuelve a abrir el juego** para que Atmosphère cargue los parches que correspondan. El overlay no cambia la RAM del juego abierto ni adapta un parche a otra versión.
 
-**Arriba/abajo** mueve la selección. **B** vuelve o esconde el panel para jugar. **ZL** cambia de lado. **ZR** guarda una selección opcional para revisar en la aplicación; los IPS necesitan que el juego siga abierto cuando la abras desde Álbum. **L** limpia esa cola, conservando los mods instalados. **−** muestra ayuda. **+** sale al menú de overlays cuando termina la operación. Durante una consulta, **X** solicita cancelarla. Una transacción ya confirmada debe terminar antes de salir.
+El nombre de destino IPS conserva el Build ID publicado por el autor. Permitir elegirlo no demuestra que se aplique al juego instalado. Un parche de otro Build ID puede no cargarse; un mod elegido puede no funcionar o cerrar el juego.
 
-El overlay no hace búsquedas de RAM ni escribe memoria del juego. Solo prepara IPS/IPS32 para el siguiente inicio y conserva copias y recibos. Cada escritura revalida el PID, el Build ID completo y los contenidos actuales; si cambian, bloquea la confirmación o conserva un registro de recuperación. Los archivos ajenos modificados no se sobrescriben durante la retirada. Un IPS de NinMagic nunca se renombra para otra versión.
+Los **ZIP/RAR y RomFS** indican **ABRIR EN APLICACIÓN**. Elige e instala esos paquetes desde NinMagic Mods; el overlay no los extrae ni descarga recursos de modelos. RomFS requiere el juego cerrado y modo aplicación. Los 7z y las dependencias no soportadas no se convierten automáticamente.
 
-La revisión comprueba identidad y conflictos estáticos; no demuestra que el autor haya probado el efecto en esa consola. Las entradas con datos de compatibilidad ausentes siguen bloqueadas. ZIP/RAR se consultan como metadatos y se revisan desde el NRO; nunca se descomprimen en el overlay. No se admiten 7z ni dependencias no soportadas.
+**Arriba/abajo** mueve la selección. **B** vuelve o esconde el panel. **ZL** cambia de lado. **ZR** guarda una elección opcional de parches para continuar en la aplicación. **L solo limpia esa cola**, conservando los mods instalados. **−** muestra ayuda. **+** sale al menú de overlays cuando termina la operación. Durante una consulta, **X** solicita cancelarla. Una transacción ya confirmada debe terminar antes de salir.
 
-Límites del overlay: 128 resultados, 32 opciones, 128 KiB de archivos de parche y 8 KiB de escrituras estáticas combinadas. Los modelos no se descargan desde él. Los respaldos de otros dominios se verifican y conservan por bloques sin cargarlos completos en RAM. Si un parche o respaldo individual excede el límite del overlay, indica que se use la aplicación.
+Para **retirar los mods instalados**, cierra el juego por completo y abre NinMagic Mods en modo aplicación. Selecciona el juego, entra en **Retirar** y confirma. La aplicación restaura las copias anteriores registradas y retira los archivos que ella añadió, siempre que sus recibos, hashes y copias sigan siendo válidos. Si otro programa cambió un archivo, no lo sobrescribe silenciosamente. No borres `config/NinMagicMods/backups/`. La retirada no revierte partidas guardadas ni cambios que el propio juego haya guardado.
 
-La caché compacta tiene 256 KiB como máximo. Una lista antigua sin huella de contenidos se invalida. Los IDs de una cola no autorizan una instalación: se vuelven a comprobar los archivos, el contexto y el Build ID. Una lista guardada necesita **X** para volver a habilitar parches en el proceso actual. La reserva de memoria del cargador no se modifica; si falta memoria, se conserva la caché y se indica que se use la aplicación.
+El overlay mantiene el proceso, Title ID y contenido del juego que seleccionaste durante la preparación y confirmación. Si el proceso cambia, se descarta la confirmación pendiente; esto evita aplicar una selección a otro contexto. El Build ID leído del juego se muestra como información, y no se exige que coincida con el del mod para elegirlo.
+
+La caché compacta contiene como máximo 128 resultados y 256 KiB. Guarda metadatos y elecciones, nunca permisos de instalación ni respaldos. Puedes elegir una entrada guardada; **Y** vuelve a consultar su fuente si todavía no se obtuvo una lista actual en esta sesión. Después se preparan los archivos antes de confirmar. No existe un paso separado de aprobación de compatibilidad.
+
+Límites del overlay: 32 opciones, 128 KiB de archivos de parche y 8 KiB de escrituras estáticas combinadas. Conserva el control de memoria y su margen usando el heap real del cargador. Si una consulta no cabe, mantiene la lista anterior e indica que se use la aplicación. Los respaldos de otros tipos de mods se comprueban por bloques sin cargarlos completos en RAM. La reserva del cargador no se modifica.
 
 ## Código y atribuciones
 
