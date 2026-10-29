@@ -1,4 +1,4 @@
-# Fuentes de NinMagic Mods 1.4.0
+# Fuentes de NinMagic Mods 1.4.1
 
 La aplicación consulta los índices de estos repositorios y descarga archivos desde sus revisiones originales, comprobando tamaño y hash Git:
 
@@ -12,11 +12,13 @@ La aplicación consulta los índices de estos repositorios y descarga archivos d
 
 ## Selección e instalación
 
-En 1.4.0 el usuario elige qué instalar sin un paso separado de revisión de compatibilidad. La ausencia de versión o evidencia de hardware no bloquea los formatos admitidos. Tampoco se interpreta esa ausencia como compatibilidad comprobada. La versión del mod y la versión del juego se muestran por separado.
+El usuario elige qué instalar sin un paso separado de revisión de compatibilidad. La ausencia de versión o evidencia de hardware no bloquea los formatos admitidos. Tampoco se interpreta esa ausencia como compatibilidad comprobada. La versión del mod y la versión del juego se muestran por separado.
 
 Los parches conservan el Build ID que declara el autor. No se cambian a otro Build ID para forzarlos sobre el ejecutable instalado. Para convertir PCHTXT o instalar IPS sigue siendo necesario que el archivo contenga un destino de parche válido. RomFS usa las rutas del juego seleccionado; un Title ID interno contradictorio se rechaza.
 
 Se mantiene la exclusión de entradas declaradas expresamente exclusivas de emuladores y la comprobación de fuente, rutas, hashes y archivos corruptos. Un archivo que indica «no probado» no se considera automáticamente incompatible. Las recopilaciones exclusivas de emuladores no se añaden como fuentes.
+
+Las publicaciones identificadas como herramientas o generadores para PC se excluyen del listado de mods instalables. El filtro usa los datos publicados por el autor y también se aplica al leer la caché. Los mods preparados para Switch no se descartan por el mero hecho de que su documentación mencione un PC. Si el contenido real del archivo revela un programa de PC que no estaba identificado en sus metadatos, se muestra el motivo y no se instala.
 
 Los ZIP/RAR se procesan automáticamente al preparar los mods elegidos. GameBanana puede ofrecer varios archivos: se elige una variante concreta; un ZIP con variantes ambiguas no se descomprime a ciegas sobre la SD. Se conservan los límites de 128 MiB por paquete, las comprobaciones de checksum y los destinos HTTPS permitidos.
 
@@ -24,7 +26,7 @@ La aplicación identifica el contenido instalado antes y durante la operación p
 
 ## Retirada y derechos
 
-Los archivos originales se guardan antes de reemplazarlos. **L → Retirar** restaura esos archivos y quita los que NinMagic añadió; requiere el juego cerrado. Los recibos conservan hashes y rutas para detectar modificaciones externas. No se borran partidas ni se revierten cambios guardados en ellas.
+Los archivos originales se guardan antes de reemplazarlos. **L → Retirar** restaura esos archivos y quita los que NinMagic añadió; requiere el juego cerrado. Los recibos conservan hashes y rutas para detectar modificaciones externas. Desde 1.4.1 también registran la identidad y el nombre de los mods de una instalación completada para mantener sus casillas marcadas. Los recibos antiguos siguen sirviendo para retirar, aunque no permiten identificar cada nombre. No se borran partidas ni se revierten cambios guardados en ellas.
 
 Los autores y recopiladores conservan sus derechos. Las descargas van directamente a la consola desde los servidores originales. El paquete de la aplicación incluye índices públicos y su propio código, no los mods de terceros. El proyecto h2y declara CC BY-SA 4.0; consulta su publicación y las condiciones de cada autor.
 

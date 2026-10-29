@@ -1,8 +1,18 @@
-# NinMagic Mods 1.4.0
+# NinMagic Mods 1.4.1
 
 Aplicación homebrew para Nintendo Switch con Atmosphère. Busca mods publicados de gráficos, FPS, ropa y personajes en GitHub y GameBanana; permite elegirlos, instalarlos y retirar los archivos instalados por NinMagic.
 
-## Qué cambia en 1.4.0
+## Qué cambia en 1.4.1
+
+Los mods instalados conservan su casilla marcada al volver a abrir la aplicación y muestran **INSTALADO**. Las elecciones todavía no aplicadas muestran **POR INSTALAR**. La aplicación guarda por separado la elección pendiente y el registro de lo realmente instalado. Marcar una casilla no instala un mod: se prepara con **Y** y se confirma con **A**. Para retirar los mods instalados, usa **L** con el juego cerrado.
+
+Las instalaciones hechas con versiones anteriores conservan su retirada y sus copias. Si su recibo no guardó el nombre del mod, se muestra que hay una instalación anterior registrada, sin atribuirla a una casilla que no se puede identificar.
+
+El catálogo oculta las herramientas de PC identificadas en los datos del autor, además de los mods declarados exclusivos de emuladores. Por ejemplo, **SamusReturnsSuitsBuilder** de GameBanana es un programa para crear el mod en un PC usando los archivos propios que pide el autor; su ZIP no contiene un mod RomFS preparado para instalar en Switch. No se ofrece como un mod instalable. Una mención a un PC en las instrucciones no excluye por sí sola un mod preparado para Switch.
+
+Los errores ZIP/RAR también explican mejor la causa concreta. Si un paquete antiguo o mal descrito contiene un programa de PC, la aplicación lo identifica sin ejecutarlo ni instalarlo en el juego.
+
+## Instalación elegida por el usuario
 
 Se elimina el paso manual «Revisar archivo» y el bloqueo por datos de compatibilidad ausentes o diferentes. Un mod se puede elegir aunque el autor no indique versión de juego, falte una declaración de Switch física o el Build ID de la consola no esté disponible. «Disponible» significa que el formato se puede seleccionar, no que su funcionamiento esté comprobado.
 
@@ -32,6 +42,10 @@ NinMagic Mods funciona sin un cargador de overlays. El canal integrado es `https
 Los parches IPS/PCHTXT conservan su **Build ID objetivo del autor**. No se renombran a otro ejecutable para forzarlos: Atmosphère los carga cuando corresponde ese identificador. Si no coincide, puede no haber efecto. Ya no hace falta abrir el juego para autorizar su preparación desde la aplicación. No se modifica memoria en tiempo real.
 
 Instala selecciones de IPS y RomFS por separado. No se combinan archivos que escriben contenido diferente en una misma ruta, parches con escrituras contradictorias ni parches de diferentes Build IDs en una única selección. En estos casos elige una variante. No se elige automáticamente entre alternativas dentro de un mismo archivo.
+
+**INSTALADO** mantiene la casilla marcada y no vuelve a descargar ese mod. **POR INSTALAR** identifica tu nueva selección pendiente. Al confirmar una nueva selección, esta sustituye los mods de NinMagic del mismo tipo (recursos o parches); los del otro tipo se conservan. La confirmación explica la sustitución antes de escribir.
+
+Si GameBanana agrupa varios archivos, **ELECCIÓN GUARDADA** mantiene marcada la publicación. Ábrela con **A** para recuperar la variante exacta que elegiste; **Y** prepara las variantes visibles marcadas. La elección pendiente se guarda aparte de la cola del overlay.
 
 ## Si el juego se cierra o el mod va mal
 
@@ -65,9 +79,9 @@ ZIP/RAR: hasta 128 MiB comprimidos o expandidos, 32 MiB por archivo y por diccio
 Se necesitan devkitPro, devkitA64, libnx y las dependencias de los Makefiles. Ejecuta primero `bash tools/build-libarchive-switch.sh` desde devkitPro MSYS2 para compilar libarchive 3.8.10 con SHA-256 de origen fijado y zlib. El overlay no enlaza libarchive.
 
 ```powershell
-.\tools\build-overlay.ps1 -ExpectedVersion 1.4.0
+.\tools\build-overlay.ps1 -ExpectedVersion 1.4.1
 python tools/bundle_overlay.py
-.\tools\build.ps1 -ExpectedVersion 1.4.0 -Preview
+.\tools\build.ps1 -ExpectedVersion 1.4.1 -Preview
 python tools/package.py
 ```
 
